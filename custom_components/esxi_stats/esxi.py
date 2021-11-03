@@ -146,8 +146,10 @@ def get_host_info(host):
         "uptime_hours": host_uptime,
         "cputotal_ghz": host_cpu_total,
         "cpuusage_ghz": host_cpu_usage,
+        "cpuusage_pct": host_cpu_usage_pct,
         "memtotal_gb": host_mem_total,
         "memusage_gb": host_mem_usage,
+        "memusage_pct": host_mem_usage_pct,
         "maintenance_mode": host_mm_mode,
         "vms": host_vms,
     }
