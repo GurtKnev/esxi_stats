@@ -111,12 +111,20 @@ def get_host_info(host):
         host_version = host_summary.config.product.version
         host_build = host_summary.config.product.build
         host_uptime = round(host_summary.quickStats.uptime / 3600, 1)
-        host_cpu_total = round(
-            host_summary.hardware.cpuMhz * host_summary.hardware.numCpuCores / 1000, 1
-        )
+        host_cpu_total = round(host_summary.hardware.cpuMhz * host_summary.hardware.numCpuCores / 1000, 1)
         host_mem_total = round(host_summary.hardware.memorySize / 1073741824, 2)
         host_cpu_usage = round(host_summary.quickStats.overallCpuUsage / 1000, 1)
+        if host_summary.quickStats.overallCpuUsage and host_summary.hardware.cpuMhz and host_summary.hardware.numCpuCores:
+            host_cpu_usage_pct = round(((host_summary.quickStats.overallCpuUsage / (host_summary.hardware.cpuMhz * host_summary.hardware.numCpuCores)) * 100), 2)
+        else:
+            host_cpu_usage_pct = "n/a"
+            _LOGGER.debug("Unable to return cpu usage for %s", host_name)
         host_mem_usage = round(host_summary.quickStats.overallMemoryUsage / 1024, 2)
+        if host_summary.hardware.memorySize and host_summary.quickStats.overallMemoryUsage:
+            host_mem_usage_pct = round((((host_summary.quickStats.overallMemoryUsage / 1024) / (host_summary.hardware.memorySize / 1073741824)) * 100), 2)
+        else:
+            host_mem_usage_pct = "n/a"
+            _LOGGER.debug("Unable to return mem usage for %s", host_name)
         host_vms = len(host.vm)
     else:
         host_version = "n/a"
