@@ -62,7 +62,9 @@ LICENSE_STATES = [
 
 VMHOST_STATES = [
     "cpuusage_ghz",
+    "cpuusage_pct",
     "memusage_gb",
+    "memusage_pct",
     "state",
     "uptime_hours",
     "vms"
@@ -81,9 +83,11 @@ VM_STATES = [
 MAP_TO_MEASUREMENT = {
     "cpu_count": "CPUs",
     "cpuusage_ghz": "CPU Use (GHz)",
+    "cpuusage_pct": "%",
     "expiration_days": "Expiration (D)",
     "free_space_gb": "Free (GB)",
     "memusage_gb": "Mem Use (GB)",
+    "memusage_pct": "%",
     "total_space_gb": "Total (GB)",
     "uptime_hours": "Uptime (H)",
     "virtual_machines": "VMs",
